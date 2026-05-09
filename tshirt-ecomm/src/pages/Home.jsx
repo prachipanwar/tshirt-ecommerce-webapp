@@ -1,28 +1,110 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { getProducts } from "../features/products/productSlice";
+import Navbar from "@/components/layout/Navbar";
+import SearchBar from "@/components/filters/SearchBar";
+import FilterSidebar from "@/components/filters/FilterSideBar";
+import ProductGrid from "@/components/products/ProductGrid";
 
 const Home = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const { items, loading } = useSelector((state) => state.products);
+  const { items, loading } = useSelector((state) => state.products);
+  const {
+    searchQuery,
+    selectedGenders,
+    selectedColors,
+    selectedTypes,
+    selectedPriceRanges,
+  } = useSelector((state) => state.filters);
+  const filteredProducts = items.filter((product) => {
+
+    // SEARCH
+    const searchableText = `
+      ${product.name}
+      ${product.color}
+      ${product.type}
+    `.toLowerCase();
   
-    useEffect(() => {
-      dispatch(getProducts());
-    }, [dispatch]);
+    const matchesSearch =
+      searchableText.includes(
+        searchQuery.toLowerCase()
+      );
+  
+    // GENDER
+    const matchesGender =
+      selectedGenders.length === 0 ||
+      selectedGenders.includes(product.gender);
+  
+    // COLOR
+    const matchesColor =
+      selectedColors.length === 0 ||
+      selectedColors.includes(product.color);
+  
+    // TYPE
+    const matchesType =
+      selectedTypes.length === 0 ||
+      selectedTypes.includes(product.type);
+  
+    // PRICE
+    const matchesPrice =
+      selectedPriceRanges.length === 0 ||
+      selectedPriceRanges.some((range) => {
+  
+        if (range === "0-250") {
+          return product.price <= 250;
+        }
+  
+        if (range === "251-450") {
+          return (
+            product.price >= 251 &&
+            product.price <= 450
+          );
+        }
+  
+        if (range === "451+") {
+          return product.price >= 451;
+        }
+  
+        return false;
+      });
   
     return (
-      <div>
-        <h1>Products</h1>
-  
-        {loading && <p>Loading...</p>}
-  
-        {items.map((product) => (
-          <p key={product.id}>{product.name}</p>
-        ))}
-      </div>
+      matchesSearch &&
+      matchesGender &&
+      matchesColor &&
+      matchesType &&
+      matchesPrice
     );
-  };
-  
-  export default Home;
+  });
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
+
+  return (
+    <div>
+      <Navbar />
+      <main className="mx-auto max-w-7xl px-4 py-6">
+        <div className="mb-6">
+          <SearchBar />
+        </div>
+
+        {/* Main Layout */}
+        <div className="flex flex-col gap-6 lg:flex-row">
+          {/* Filters */}
+          <div className="hidden lg:block">
+            <FilterSidebar />
+          </div>
+
+          {/* Products Placeholder */}
+          <section className="flex-1">
+            <ProductGrid products={filteredProducts} />
+          </section>
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default Home;
