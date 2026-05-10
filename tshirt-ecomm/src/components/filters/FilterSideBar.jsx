@@ -82,7 +82,7 @@ const FilterSidebar = () => {
         </div>
       </div>
       <div>
-        <h3 className="mb-3 text-lg font-semibold">Type</h3>
+        <h3 className="mb-3 text-lg font-semibold">Price</h3>
         <div className="space-y-2">
           {priceRanges.map((range) => (
             <label key={range} className="flex items-center gap-2">

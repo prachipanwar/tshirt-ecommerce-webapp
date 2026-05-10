@@ -2,11 +2,8 @@ import { Search, SlidersHorizontal } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchQuery } from "../../features/filters/filterSlice";
 import FilterSidebar from "./FilterSidebar";
-import {
-    Sheet,
-    SheetContent,
-    SheetTrigger,
-  } from "@/components/ui/sheet";
+import {Sheet,SheetContent,SheetTrigger} from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -27,22 +24,22 @@ const SearchBar = () => {
           className="h-11 w-full rounded-md border border-gray-300 px-4 pr-12 outline-none focus:border-black"
         />
 
-        <button className="search-button-container absolute right-0 top-0 flex h-11 w-12 items-center justify-center border-l">
+        <Button className="search-button-container absolute right-0 top-0 flex h-11 w-12 items-center justify-center border-l">
           <Search className="h-5 w-5" />
-        </button>
+        </Button>
       </div>
 
       <Sheet>
-        <SheetTrigger asChild>
-          <button
+        <SheetTrigger aschild={"true"}>
+          <div
             className="
         flex h-11 w-11 items-center
         justify-center rounded-md border
         bg-white lg:hidden
       "
           >
-            <SlidersHorizontal className="h-5 w-5" />
-          </button>
+             <SlidersHorizontal className="h-5 w-5" /> 
+          </div>
         </SheetTrigger>
 
         <SheetContent side="left" className="w-[300px] overflow-y-auto">
