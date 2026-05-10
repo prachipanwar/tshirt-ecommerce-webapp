@@ -6,6 +6,7 @@ import SearchBar from "@/components/filters/SearchBar";
 import FilterSidebar from "@/components/filters/FilterSideBar";
 import ProductGrid from "@/components/products/ProductGrid";
 
+
 const Home = () => {
   const dispatch = useDispatch();
 
@@ -36,17 +37,13 @@ const Home = () => {
       selectedGenders.length === 0 ||
       selectedGenders.includes(product.gender);
   
-    // COLOR
     const matchesColor =
       selectedColors.length === 0 ||
       selectedColors.includes(product.color);
-  
-    // TYPE
     const matchesType =
       selectedTypes.length === 0 ||
       selectedTypes.includes(product.type);
   
-    // PRICE
     const matchesPrice =
       selectedPriceRanges.length === 0 ||
       selectedPriceRanges.some((range) => {
@@ -90,14 +87,11 @@ const Home = () => {
           <SearchBar />
         </div>
 
-        {/* Main Layout */}
         <div className="flex flex-col gap-6 lg:flex-row">
-          {/* Filters */}
           <div className="hidden lg:block">
             <FilterSidebar />
           </div>
 
-          {/* Products Placeholder */}
           <section className="flex-1">
             <ProductGrid products={filteredProducts} />
           </section>

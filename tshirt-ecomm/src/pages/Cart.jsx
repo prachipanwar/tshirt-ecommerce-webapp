@@ -2,6 +2,7 @@ import { useSelector,useDispatch } from "react-redux";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/layout/Navbar";
 import { increaseQuantity,decreaseQuantity,removeFromCart } from "@/features/cart/cartSlice";
+import toast from "react-hot-toast";
 
 const Cart = () => {
  const dispatch = useDispatch();
@@ -10,6 +11,19 @@ const Cart = () => {
   const totalAmount = cartItems.reduce((total, item) => {
     return total + item.price * item.quantity;
   }, 0);
+
+  const handleIncrease = (item) => {
+
+    if (item.quantity >= item.stock) {
+  
+      toast.error("Maximum available quantity reached");
+  
+      return;
+    }
+  
+    dispatch(increaseQuantity(item.id));
+  };
+  
 
   return (
     <>
@@ -29,14 +43,11 @@ const Cart = () => {
                 key={item.id}
                 className="flex items-center gap-4 rounded-lg border bg-white p-4"
               >
-                {/* Image */}
                 <img
                   src={item.imageURL}
                   alt={item.name}
                   className="h-24 w-24 rounded-md object-cover"
                 />
-
-                {/* Details */}
                 <div className="flex-1">
                   <h2 className="text-lg font-semibold">{item.name}</h2>
 
@@ -47,7 +58,7 @@ const Cart = () => {
 
                     <span>{item.quantity}</span>
 
-                    <Button onClick={() => dispatch(increaseQuantity(item.id))}>+</Button>
+                    <Button onClick={() => handleIncrease(item)}>+</Button>
                   </div>
                 </div>
                 <Button onClick={() => dispatch(removeFromCart(item.id))}>
@@ -55,8 +66,6 @@ const Cart = () => {
                 </Button>
               </div>
             ))}
-
-            {/* Total */}
             <div className="flex justify-end">
               <div className="rounded-lg border bg-white p-6">
                 <h2 className="text-xl font-bold">Total: ₹ {totalAmount}</h2>

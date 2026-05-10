@@ -13,7 +13,6 @@ const Navbar = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-violet-400 text-white">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         
-        {/* Logo */}
         <Link to="/">
           <h1 className="text-xl font-bold tracking-tight">
             Comfy Tee's

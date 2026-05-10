@@ -24,7 +24,7 @@ const FilterSidebar = () => {
   const priceRanges = ["0-250", "251-450", "451+"];
 
   return (
-    <aside className="w-full rounded-lg border bg-white p-4 lg:w-64">
+    <aside className="w-full rounded-lg border bg-white p-4">
       {/* Gender */}
       <div className="mb-6">
         <h3 className="mb-3 text-lg font-semibold">Gender</h3>

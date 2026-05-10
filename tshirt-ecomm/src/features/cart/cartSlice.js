@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { loadCartFromStorage } from "../../utils/cartStorage";
 
 const initialState = {
-  cartItems: [],
+  cartItems: loadCartFromStorage(),
 };
 
 const cartSlice = createSlice({
@@ -16,7 +17,6 @@ const cartSlice = createSlice({
         (item) => item.id === product.id
       );
 
-      // Product already in cart
       if (existingItem) {
 
         if (existingItem.quantity < product.quantity) {
