@@ -41,14 +41,17 @@ const Cart = () => {
             {cartItems.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center gap-4 rounded-lg border bg-white p-4"
+                className="flex flex-col gap-4
+                rounded-lg border bg-white p-4
+                sm:flex-row sm:items-center"
               >
                 <img
                   src={item.imageURL}
                   alt={item.name}
-                  className="h-24 w-24 rounded-md object-cover"
+                  className="h-40 w-full rounded-md object-cover
+                  sm:h-24 sm:w-24"
                 />
-                <div className="flex-1">
+                <div className="flex flex-1 flex-col gap-4">
                   <h2 className="text-lg font-semibold">{item.name}</h2>
 
                   <p className="text-gray-500">₹ {item.price}</p>
@@ -61,9 +64,11 @@ const Cart = () => {
                     <Button onClick={() => handleIncrease(item)}>+</Button>
                   </div>
                 </div>
+                <div className="flex flex-wrap items-center justify-between gap-3">
                 <Button onClick={() => dispatch(removeFromCart(item.id))}>
                   Remove
                 </Button>
+                </div>
               </div>
             ))}
             <div className="flex justify-end">
