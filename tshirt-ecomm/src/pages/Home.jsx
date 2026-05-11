@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../features/products/productSlice";
 import Navbar from "@/components/layout/Navbar";
 import SearchBar from "@/components/filters/SearchBar";
-import FilterSidebar from "@/components/filters/FilterSideBar";
+import FilterSidebar from "@/components/filters/FilterSidebar";
 import ProductGrid from "@/components/products/ProductGrid";
 
 
