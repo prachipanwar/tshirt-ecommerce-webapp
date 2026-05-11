@@ -1,7 +1,7 @@
 import { Search, SlidersHorizontal } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchQuery } from "../../features/filters/filterSlice";
-import FilterSidebar from "../filters/FilterSidebar";
+import FilterSidebar from "./FilterSidebar";
 import {Sheet,SheetContent,SheetTrigger} from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 
