@@ -1,7 +1,7 @@
 import { Search, SlidersHorizontal } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchQuery } from "../../features/filters/filterSlice";
-import FilterSidebar from "./FilterSidebar";
+import FilterSideBar from "./FilterSideBar";
 import {Sheet,SheetContent,SheetTrigger} from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 
@@ -45,7 +45,7 @@ const SearchBar = () => {
         <SheetContent side="left" className="w-[300px] overflow-y-auto">
           <h2 className="mb-6 text-xl font-semibold">Filters</h2>
 
-          <FilterSidebar />
+          <FilterSideBar />
         </SheetContent>
       </Sheet>
     </div>

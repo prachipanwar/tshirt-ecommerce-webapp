@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../features/products/productSlice";
 import Navbar from "@/components/layout/Navbar";
 import SearchBar from "@/components/filters/SearchBar";
-import FilterSidebar from "@/components/filters/FilterSidebar";
+import FilterSideBar from "@/components/filters/FilterSideBar";
 import ProductGrid from "@/components/products/ProductGrid";
 
 
@@ -89,7 +89,7 @@ const Home = () => {
 
         <div className="flex flex-col gap-6 lg:flex-row">
           <div className="hidden lg:block">
-            <FilterSidebar />
+            <FilterSideBar />
           </div>
 
           <section className="flex-1">

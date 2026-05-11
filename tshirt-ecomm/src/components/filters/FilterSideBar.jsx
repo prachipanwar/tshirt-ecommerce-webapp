@@ -7,7 +7,7 @@ import {
   togglePriceRange,
 } from "../../features/filters/filterSlice";
 
-const FilterSidebar = () => {
+const FilterSideBar = () => {
   const products = useSelector((state) => state.products.items);
 
   const genders = getUniqueValues(products, "gender");
@@ -101,4 +101,4 @@ const FilterSidebar = () => {
   );
 };
 
-export default FilterSidebar;
+export default FilterSideBar;
